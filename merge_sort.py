@@ -1,4 +1,4 @@
-def marge(A, p, q, r):
+def merge(A, p, q, r):
     n_l = q - p + 1
     n_r = r - q
     L = [0] * (n_l)
@@ -28,16 +28,16 @@ def marge(A, p, q, r):
         k += 1
 
 
-def marge_sort(A, p, r):
+def merge_sort(A, p, r):
     if p >= r:
         return
     q = (p + r) // 2
-    marge_sort(A, p, q)
-    marge_sort(A, q + 1, r)
-    marge(A, p, q, r)
+    merge_sort(A, p, q)
+    merge_sort(A, q + 1, r)
+    merge(A, p, q, r)
 
 
 # if __name__ == "__main__":
 #     A = [2, 4, 5, 7, 1, 2, 3, 6]
-#     marge_sort(A, 0, len(A) - 1)
+#     merge_sort(A, 0, len(A) - 1)
 #     print(A)
