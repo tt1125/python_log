@@ -101,7 +101,7 @@ def comparison():
         range(1000, 10001, 1000),
         average_merge,
         label="Merge Sort",
-        marker="o",  # rangeの上限を修正
+        marker="s",  # rangeの上限を修正
     )
     plt.legend()
     plt.savefig("comparison.png")
