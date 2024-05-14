@@ -1,6 +1,3 @@
-import random
-import copy
-import time
 from insertion_sort import insertion_sort
 from merge_sort import merge_sort
 import random
