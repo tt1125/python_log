@@ -14,7 +14,7 @@ def comparison():
     average_merge = []
     m = 100
     for n in range(1000, 10001, 1000):
-        print(n)
+        print("process", n / 100, "%")
         time_insertion = 0
         time_merge = 0
         for _ in range(m):
@@ -36,7 +36,6 @@ def comparison():
 
         average_insertion.append(time_insertion / m)
         average_merge.append(time_merge / m)
-    print(average_insertion)
     plt.xlabel("input size")
     plt.ylabel("average computation time [ns]")
     plt.plot(
