@@ -7,6 +7,8 @@ def insertion_sort(A, n):
             i = i - 1
         A[i + 1] = key
 
+    return A
+
 
 if __name__ == "__main__":
     A = [31, 41, 59, 26, 41, 58]

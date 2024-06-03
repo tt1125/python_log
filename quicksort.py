@@ -16,7 +16,7 @@ def quicksort(A, p, r):
         quicksort(A, q + 1, r)
 
 
-# if __name__ == "__main__":
-#     A = [2, 8, 7, 1, 3, 5, 6, 4]
-#     quicksort(A, 0, len(A) - 1)
-#     print(A)
+if __name__ == "__main__":
+    A = [2, 8, 7, 1, 3, 5, 6, 4]
+    quicksort(A, 0, len(A) - 1)
+    print(A)
