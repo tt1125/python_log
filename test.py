@@ -1,138 +1,86 @@
-import xlsxwriter
+"""
+Created on 2024/05/24
 
+@author: Suguru Ueda
+"""
 
-def create_format():
-    black = "#000000"
-    gray = "a5a5a5"
-    white = "#ffffff"
-    sky = "ccecff"
-    deep_bule = "#2e75b5"
-    deep_green = "#548135"
-    pink = "ffccff"
-    orange = "ffc000"
-    book = xlsxwriter.Workbook("test.xlsx")
-    sheet = book.add_worksheet()
+import math
+import random
+import copy
 
-    # セルのフォーマット
-    GREEN_CELL = book.add_format(
-        {
-            "text_wrap": True,
-            "bold": 1,
-            "border": 1,
-            "align": "center",
-            "valign": "vcenter",
-            "color": white,
-            "fg_color": deep_green,
-        }
-    )
-    BLUE_CELL = book.add_format(
-        {
-            "text_wrap": True,
-            "bold": 1,
-            "border": 1,
-            "align": "center",
-            "valign": "vcenter",
-            "color": white,
-            "fg_color": deep_bule,
-        }
-    )
-    GRAY_CELL = book.add_format(
-        {
-            "text_wrap": True,
-            "bold": 1,
-            "border": 1,
-            "align": "center",
-            "valign": "vcenter",
-            "color": white,
-            "fg_color": gray,
-        }
-    )
-    SKY_CELL = book.add_format(
-        {
-            "text_wrap": True,
-            "bold": 1,
-            "border": 1,
-            "align": "center",
-            "valign": "vcenter",
-            "color": black,
-            "fg_color": sky,
-        }
-    )
-    ORANGE_CELL = book.add_format(
-        {
-            "text_wrap": True,
-            "bold": 1,
-            "border": 1,
-            "align": "center",
-            "valign": "vcenter",
-            "color": black,
-            "fg_color": orange,
-        }
-    )
+from selection_sort import selection_sort
+from insertion_sort import insertion_sort
+from merge_sort import merge_sort, merge
+from quicksort import quicksort, partition
 
-    # セルの大きさを指定
-    for i in range(0, 4):
-        sheet.set_row(i, 0)
+# def selection_sort(A, n):
 
-    for i in range(3, 7):
-        sheet.set_row(i, 40)
-    sheet.set_row(8, 20)
-    sheet.set_column("A:A", 0)
-    sheet.set_column("R:S", 50)
+# def insertion_sort(A, n):
 
-    # 4行目
+# def merge(A, p, q, r):
 
-    ROW4_FORMAT = [
-        ["D4", " ", GREEN_CELL],
-        ["E4", " ", GREEN_CELL],
-        ["F4", " ", GREEN_CELL],
-        ["G4", " ", BLUE_CELL],
-        ["H4", "★", GRAY_CELL],
-        ["I4", "★", GRAY_CELL],
-        ["J4", " ", GRAY_CELL],
-        ["K4", " ", GRAY_CELL],
-        ["L4", " ", BLUE_CELL],
-        ["M4", " ", BLUE_CELL],
-        ["N4", "★", GRAY_CELL],
-        ["O4", "★", GRAY_CELL],
-        ["P4", "★", GRAY_CELL],
-        ["Q4", " ", BLUE_CELL],
-        ["R4", "規制の洗い出し", BLUE_CELL],
-        ["S4", " ", BLUE_CELL],
-    ]
+# def merge_sort(A, p, r):
 
-    for cell, value, format in ROW4_FORMAT:
-        sheet.write(cell, value, format)
+# def partition(A, p, r):
 
-    # 5行目
-
-    ROW5_FORMAT = [
-        ["B5:B7", "No.", SKY_CELL],
-        ["C5:C7", "ぎょうせい作業用", GRAY_CELL],
-        ["D5:D7", "所管課", GREEN_CELL],
-        ["E5:E7", "担当者", GREEN_CELL],
-        ["F5:F7", "連絡先", GREEN_CELL],
-        ["G5:G7", "規制区分", ORANGE_CELL],
-        ["H5:H7", "No.", GRAY_CELL],
-        ["I5:I7", "ヒットKW\n※一部", GRAY_CELL],
-        ["J5:J7", "【非表示】例規集登載順", GRAY_CELL],
-        ["K5:K7", "【非表示】リンク設定用", GRAY_CELL],
-        ["L5:L7", "例規名", BLUE_CELL],
-        ["M5:M7", "制定年番号", BLUE_CELL],
-        ["N5:N7", "条等", GRAY_CELL],
-        ["O5:O7", "乗番号", GRAY_CELL],
-        ["P5:P7", "位置", GRAY_CELL],
-        ["Q5:Q7", "条／\n掲載場所", BLUE_CELL],
-        ["R5:R7", "規制の洗い出し", SKY_CELL],
-        ["S5:S7", "留意事項", SKY_CELL],
-    ]
-
-    for cell, value, format in ROW5_FORMAT:
-        sheet.merge_range(cell, value, format)
-
-    # 作成
-    book.close()
-
+# def quicksort(A, p, r):
 
 if __name__ == "__main__":
-    create_format()
+
+    n = 100
+    m = 10
+    algorithms = {
+        "selection_sort": True,
+        "insertion_sort": True,
+        "merge_sort": True,
+        "quicksort": True,
+    }
+
+    for _ in range(m):
+
+        A = [random.randint(0, 10 * n) for _ in range(n)]
+
+        B = sorted(A)
+
+        # 選択ソートのチェック
+        if algorithms["selection_sort"]:
+
+            C = copy.deepcopy(A)
+            selection_sort(C, len(C))
+
+            for i in range(n):
+                if C[i] != B[i]:
+                    algorithms["selection_sort"] = False
+                    break
+
+        # 挿入ソートのチェック
+        if algorithms["insertion_sort"]:
+
+            C = copy.deepcopy(A)
+            insertion_sort(C, len(C))
+
+            for i in range(n):
+                if C[i] != B[i]:
+                    algorithms["insertion_sort"] = False
+
+        # マージソートのチェック
+        if algorithms["merge_sort"]:
+
+            C = copy.deepcopy(A)
+            merge_sort(C, 0, len(C) - 1)
+
+            for i in range(n):
+                if C[i] != B[i]:
+                    algorithms["merge_sort"] = False
+
+        # クイックソートのチェック
+        if algorithms["quicksort"]:
+
+            C = copy.deepcopy(A)
+            quicksort(C, 0, len(C) - 1)
+
+            for i in range(n):
+                if C[i] != B[i]:
+                    algorithms["quicksort"] = False
+
+    print(algorithms)

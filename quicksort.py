@@ -20,3 +20,5 @@ if __name__ == "__main__":
     A = [2, 8, 7, 1, 3, 5, 6, 4]
     quicksort(A, 0, len(A) - 1)
     print(A)
+
+
